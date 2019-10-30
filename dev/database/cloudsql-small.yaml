@@ -1,7 +1,7 @@
 apiVersion: database.gcp.crossplane.io/v1beta1
 kind: CloudSQLInstanceClass
 metadata:
-  name: cloudsqlinstancemysql-standard
+  name: cloudsqlinstancemysql-small-dev
   annotations:
     resourceclass.crossplane.io/is-default-class: "true"
 specTemplate:
@@ -10,7 +10,7 @@ specTemplate:
     databaseVersion: MYSQL_5_6
     region: us-west2
     settings:
-      tier: db-n1-standard-1
+      tier: db-f1-micro
       dataDiskType: PD_SSD
       dataDiskSizeGb: 10
       ipConfiguration:

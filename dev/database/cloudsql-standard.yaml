@@ -1,7 +1,7 @@
 apiVersion: database.gcp.crossplane.io/v1beta1
 kind: CloudSQLInstanceClass
 metadata:
-  name: cloudsqlinstancemysql-standard
+  name: cloudsqlinstancemysql-standard-dev
   labels:
     size: medium
     engine: mysql

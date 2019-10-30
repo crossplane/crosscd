@@ -1,7 +1,7 @@
 apiVersion: compute.gcp.crossplane.io/v1alpha3
 kind: GKEClusterClass
 metadata:
-  name: gkecluster-standard
+  name: gkecluster-standard-dev
   labels:
     example: "true"
 specTemplate:
