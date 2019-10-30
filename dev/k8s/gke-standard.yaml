@@ -8,7 +8,7 @@ specTemplate:
   writeConnectionSecretsToNamespace: crossplane-system
   machineType: n1-standard-1
   numNodes: 1
-  zone: us-central1-b
+  zone: us-west2
   providerRef:
     name: example
   reclaimPolicy: Delete
