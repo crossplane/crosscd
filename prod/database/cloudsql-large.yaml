@@ -1,19 +1,20 @@
 apiVersion: database.gcp.crossplane.io/v1beta1
 kind: CloudSQLInstanceClass
 metadata:
-  name: cloudsqlinstancemysql-standard
+  name: cloudsqlinstancemysql-large
   labels:
-    size: medium
+    size: large
     engine: mysql
+    compute: intensive
 specTemplate:
   writeConnectionSecretsToNamespace: crossplane-system
   forProvider:
     databaseVersion: MYSQL_5_6
     region: us-west2
     settings:
-      tier: db-n1-standard-1
+      tier: db-n1-standard-16
       dataDiskType: PD_SSD
-      dataDiskSizeGb: 10
+      dataDiskSizeGb: 500
       ipConfiguration:
         ipv4Enabled: true
   providerRef:

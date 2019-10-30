@@ -2,9 +2,8 @@ apiVersion: database.gcp.crossplane.io/v1beta1
 kind: CloudSQLInstanceClass
 metadata:
   name: cloudsqlinstancemysql-standard
-  labels:
-    size: medium
-    engine: mysql
+  annotations:
+    resourceclass.crossplane.io/is-default-class: "true"
 specTemplate:
   writeConnectionSecretsToNamespace: crossplane-system
   forProvider:
