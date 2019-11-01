@@ -4,4 +4,4 @@ metadata:
   name: ekscluster
 specTemplate:
   workerNodes:
-    nodeInstanceType: t2.micro
+    nodeInstanceType: t2.small
