@@ -1,0 +1,4 @@
+commonLabels:
+  provider: aws
+resources:
+- class.yaml

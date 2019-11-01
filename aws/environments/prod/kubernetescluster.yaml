@@ -1,0 +1,7 @@
+apiVersion: compute.aws.crossplane.io/v1alpha3
+kind: EKSClusterClass
+metadata:
+  name: ekscluster
+specTemplate:
+  workerNodes:
+    nodeInstanceType: m5.large

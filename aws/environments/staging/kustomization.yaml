@@ -1,0 +1,5 @@
+namePrefix: staging-
+commonLabels:
+  env: staging
+bases:
+- ../../services

@@ -1,0 +1,19 @@
+apiVersion: cache.aws.crossplane.io/v1beta1
+kind: ReplicationGroupClass
+metadata:
+  name: aws-redis
+specTemplate:
+  writeConnectionSecretsToNamespace: crossplane-system
+  providerRef:
+    name: aws-provider
+  reclaimPolicy: Delete
+  forProvider:
+    replicationGroupDescription: "A standard replication group"
+    applyModificationsImmediately: true
+    engine: "redis"
+    engineVersion: "3.2.4"
+    cacheParameterGroupName: default.redis3.2.cluster.on
+    cacheNodeType: cache.t2.medium
+    automaticFailoverEnabled: true
+    numNodeGroups: 2
+    replicasPerNodeGroup: 2

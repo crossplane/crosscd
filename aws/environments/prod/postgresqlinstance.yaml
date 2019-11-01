@@ -1,0 +1,8 @@
+apiVersion: database.aws.crossplane.io/v1beta1
+kind: RDSInstanceClass
+metadata:
+  name: rdspostgresql
+specTemplate:
+  forProvider:
+    dbInstanceClass: db.m5.large
+    allocatedStorage: 100

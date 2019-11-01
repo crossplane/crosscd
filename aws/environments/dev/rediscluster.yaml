@@ -1,0 +1,9 @@
+apiVersion: cache.aws.crossplane.io/v1beta1
+kind: ReplicationGroupClass
+metadata:
+  name: aws-redis
+specTemplate:
+  forProvider:
+    cacheNodeType: cache.t2.micro
+    numNodeGroups: 1
+    replicasPerNodeGroup: 1

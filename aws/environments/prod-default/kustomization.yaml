@@ -1,0 +1,4 @@
+commonAnnotations:
+  resourceclass.crossplane.io/is-default-class: "true"
+bases:
+- ../prod
