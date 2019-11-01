@@ -1,0 +1,5 @@
+commonLabels:
+  provider: azure
+resources:
+- account-class.yaml
+- container-class.yaml

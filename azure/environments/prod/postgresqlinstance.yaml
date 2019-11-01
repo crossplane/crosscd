@@ -1,0 +1,9 @@
+apiVersion: database.azure.crossplane.io/v1alpha3
+kind: SQLServerClass
+metadata:
+  name: sqlserverpostgresql
+specTemplate:
+  pricingTier:
+    vcores: 8
+  storageProfile:
+    storageGB: 100

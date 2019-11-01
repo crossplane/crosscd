@@ -1,0 +1,7 @@
+apiVersion: compute.azure.crossplane.io/v1alpha3
+kind: AKSClusterClass
+metadata:
+  name: akscluster
+specTemplate:
+  nodeCount: 5
+  nodeVMSize: Standard_B12ms

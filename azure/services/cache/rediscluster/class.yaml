@@ -1,0 +1,16 @@
+apiVersion: cache.azure.crossplane.io/v1alpha3
+kind: RedisClass
+metadata:
+  name: azure-redis
+specTemplate:
+  writeConnectionSecretsToNamespace: crossplane-system
+  resourceGroupName: group-westus-1
+  location: West US
+  sku:
+    name: Basic
+    family: C
+    capacity: 2
+  enableNonSslPort: true
+  providerRef:
+    name: azure-provider
+  reclaimPolicy: Delete

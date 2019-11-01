@@ -1,0 +1,10 @@
+namePrefix: prod-
+commonLabels:
+  env: prod
+bases:
+- ../../services
+patches:
+- kubernetescluster.yaml
+- mysqlinstance.yaml
+- postgresqlinstance.yaml
+- rediscluster.yaml

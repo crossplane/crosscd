@@ -1,0 +1,6 @@
+bases:
+- cache/rediscluster
+- compute/kubernetescluster
+- database/mysqlinstance
+- database/postgresqlinstance
+- storage/bucket
