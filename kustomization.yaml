@@ -1,0 +1,4 @@
+bases:
+- aws/environments/full
+- azure/environments/full
+- gcp/environments/full
