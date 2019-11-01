@@ -1,0 +1,27 @@
+apiVersion: compute.gcp.crossplane.io/v1alpha3
+kind: GlobalAddress
+metadata:
+  name: globaladdress
+spec:
+  network: projects/crossplane-playground/global/networks/default
+---
+apiVersion: servicenetworking.gcp.crossplane.io/v1alpha3
+kind: Connection
+metadata:
+  name: connection
+spec:
+  network: projects/crossplane-playground/global/networks/default
+  reservedPeeringRangeRefs:
+  - name: wordpress-globaladdress
+---
+apiVersion: database.gcp.crossplane.io/v1beta1
+kind: CloudSQLInstanceClass
+metadata:
+  name: cloudsqlinstancemysql
+specTemplate:
+  forProvider:
+    settings:
+      tier: db-n1-standard-1
+      dataDiskSizeGb: 20
+      ipConfiguration:
+        privateNetwork: projects/crossplane-playground/global/networks/default

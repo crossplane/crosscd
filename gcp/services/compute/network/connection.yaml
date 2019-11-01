@@ -1,0 +1,12 @@
+apiVersion: servicenetworking.gcp.crossplane.io/v1alpha3
+kind: Connection
+metadata:
+  name: connection
+spec:
+  providerRef:
+    name: gcp-provider
+  reclaimPolicy: Delete
+  parent: services/servicenetworking.googleapis.com
+  network: projects/$PROJECT_ID/global/networks/$NETWORK_NAME
+  reservedPeeringRangeRefs:
+    - name: globaladdress

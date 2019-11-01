@@ -1,0 +1,13 @@
+apiVersion: compute.gcp.crossplane.io/v1alpha3
+kind: GlobalAddress
+metadata:
+  name: globaladdress
+spec:
+  providerRef:
+    name: gcp-provider
+  reclaimPolicy: Delete
+  name: globaladdress
+  purpose: VPC_PEERING
+  addressType: INTERNAL
+  prefixLength: 16
+  network: projects/$PROJECT_ID/global/networks/$NETWORK_NAME

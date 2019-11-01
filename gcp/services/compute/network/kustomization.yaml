@@ -1,0 +1,5 @@
+commonLabels:
+  provider: gcp
+resources:
+- connection.yaml
+- globaladdress.yaml
