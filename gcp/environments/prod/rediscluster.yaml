@@ -1,0 +1,7 @@
+apiVersion: cache.gcp.crossplane.io/v1beta1
+kind: CloudMemorystoreInstanceClass
+metadata:
+  name: gcp-redis
+specTemplate:
+  forProvider:
+    memorySizeGb: 1

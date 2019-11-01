@@ -1,0 +1,11 @@
+apiVersion: storage.gcp.crossplane.io/v1alpha3
+kind: BucketClass
+metadata:
+  name: gcsbucket
+specTemplate:
+  writeConnectionSecretsToNamespace: crossplane-system
+  location: US
+  storageClass: MULTI_REGIONAL
+  providerRef:
+    name: gcp-provider
+  reclaimPolicy: Delete

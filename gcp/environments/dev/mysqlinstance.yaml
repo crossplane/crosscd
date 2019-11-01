@@ -1,0 +1,9 @@
+apiVersion: database.gcp.crossplane.io/v1beta1
+kind: CloudSQLInstanceClass
+metadata:
+  name: cloudsqlinstancemysql
+specTemplate:
+  forProvider:
+    settings:
+      tier: db-n1-standard-1
+      dataDiskSizeGb: 20
