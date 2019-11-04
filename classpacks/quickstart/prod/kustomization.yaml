@@ -1,4 +1,4 @@
 bases:
-- ../../aws/environments/prod-default
-- ../../azure/environments/prod
-- ../../gcp/environments/prod
+- ../../../aws/environments/prod-default
+- ../../../azure/environments/prod
+- ../../../gcp/environments/prod

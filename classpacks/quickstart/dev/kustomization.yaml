@@ -1,4 +1,4 @@
 bases:
-- ../../aws/environments/dev-default
-- ../../azure/environments/dev
-- ../../gcp/environments/dev
+- ../../../aws/environments/dev-default
+- ../../../azure/environments/dev
+- ../../../gcp/environments/dev
