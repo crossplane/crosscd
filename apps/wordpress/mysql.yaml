@@ -1,0 +1,11 @@
+apiVersion: database.crossplane.io/v1alpha1
+kind: MySQLInstance
+metadata:
+  name: mysql-claim
+spec:
+  classSelector:
+    matchLabels:
+      app: wordpress
+  engineVersion: "5.7"
+  writeConnectionSecretToRef:
+    name: wordpressmysql

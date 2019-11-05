@@ -1,0 +1,5 @@
+commonLabels:
+  app: wordpress
+resources:
+- mysql.yaml
+- wordpress.yaml

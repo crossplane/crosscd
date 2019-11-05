@@ -3,6 +3,7 @@ kind: GlobalAddress
 metadata:
   name: globaladdress
 spec:
+  name: wordpress-globaladdress
   network: projects/crossplane-playground/global/networks/default
 ---
 apiVersion: servicenetworking.gcp.crossplane.io/v1alpha3
@@ -20,8 +21,10 @@ metadata:
   name: cloudsqlinstancemysql
 specTemplate:
   forProvider:
+    region: us-west2
     settings:
       tier: db-n1-standard-1
       dataDiskSizeGb: 20
       ipConfiguration:
+        ipv4Enabled: false
         privateNetwork: projects/crossplane-playground/global/networks/default
