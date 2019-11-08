@@ -32,7 +32,8 @@ replace parts of the base-level resources. In this repository, each base
 provides all *required* fields for validation, but may not include every field
 required for successful provisioning. For example, fields that require one of
 two fields have both omitted in the base, such that overlays do not have to
-delete fields.
+delete fields. This means that some bases will *require* an overlay in order to
+be successfully utilized for dynamic provisioning.
 
 Customizing can take the form of either modifying bases or creating and
 combining new overlays. For instance, when you run `kubectl apply -k .` in the
