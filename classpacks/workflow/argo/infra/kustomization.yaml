@@ -1,0 +1,9 @@
+namePrefix: argo-
+bases:
+- ../../../../gcp/environments/dev-default
+- ../../../../gcp/services/compute/network
+- ../../../../gcp/services/compute/subnetwork
+- ../../../../gcp/services/compute/globaladdress
+- ../../../../gcp/services/servicenetworking/connection
+patches:
+- patch.yaml

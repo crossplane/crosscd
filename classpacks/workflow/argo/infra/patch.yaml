@@ -1,0 +1,57 @@
+apiVersion: compute.gcp.crossplane.io/v1alpha3
+kind: Network
+metadata:
+  name: network
+spec:
+  name: argo-demo-network
+---
+apiVersion: compute.gcp.crossplane.io/v1alpha3
+kind: Subnetwork
+metadata:
+  name: subnetwork
+spec:
+  name: argo-demo-subnetwork
+  networkRef:
+    name: argo-network
+---
+apiVersion: compute.gcp.crossplane.io/v1alpha3
+kind: GlobalAddress
+metadata:
+  name: globaladdress
+spec:
+  name: argo-demo-globaladdress
+  networkRef:
+    name: argo-network
+---
+apiVersion: servicenetworking.gcp.crossplane.io/v1alpha3
+kind: Connection
+metadata:
+  name: connection
+spec:
+  parent: services/servicenetworking.googleapis.com
+  networkRef:
+    name: argo-network
+  reservedPeeringRangeRefs:
+    - name: argo-globaladdress
+---
+apiVersion: database.gcp.crossplane.io/v1beta1
+kind: CloudSQLInstanceClass
+metadata:
+  name: dev-gcp-cloudsqlinstancemysql
+specTemplate:
+  forProvider:
+    region: us-central1
+    settings:
+      ipConfiguration:
+        privateNetworkRef:
+          name: argo-network
+---
+apiVersion: compute.gcp.crossplane.io/v1alpha3
+kind: GKEClusterClass
+metadata:
+  name: dev-gcp-gkecluster
+specTemplate:
+  networkRef:
+    name: argo-network
+  subnetworkRef:
+    name: argo-subnetwork

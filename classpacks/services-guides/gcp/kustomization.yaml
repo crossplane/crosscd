@@ -1,9 +1,0 @@
-namePrefix: wordpress-
-commonLabels:
-  app: wordpress
-bases:
-- ../../../apps/wordpress
-- ../../../gcp/services/compute/network
-- ../../../gcp/services/database/mysqlinstance
-patches:
-- patch.yaml
