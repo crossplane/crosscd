@@ -55,5 +55,6 @@ specTemplate:
     name: argo-network
   subnetworkRef:
     name: argo-subnetwork
+  enableIPAlias: true
   clusterSecondaryRangeName: pods
   servicesSecondaryRangeName: services
