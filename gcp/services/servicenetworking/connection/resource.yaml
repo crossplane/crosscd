@@ -1,0 +1,18 @@
+apiVersion: servicenetworking.gcp.crossplane.io/v1alpha3
+kind: Connection
+metadata:
+  name: connection
+spec:
+  parent: services/servicenetworking.googleapis.com
+  ## must provide one of networkRef or network
+  # networkRef:
+  #   name: sample-network
+  # network: projects/crossplane-playground/global/networks/sample-network
+  ## must provide one of reservedPeeringRangeRefs or reservedPeeringRanges
+  # reservedPeeringRangeRefs:
+  #   - name: sample-globaladdress
+  # reservedPeeringRanges:
+  #   - sample-globaladdress
+  reclaimPolicy: Delete
+  providerRef:
+    name: gcp-provider

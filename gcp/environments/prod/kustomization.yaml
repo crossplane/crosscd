@@ -1,4 +1,4 @@
-namePrefix: prod-
+namePrefix: prod-gcp-
 commonLabels:
   env: prod
 bases:

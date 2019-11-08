@@ -1,4 +1,4 @@
-namePrefix: dev-
+namePrefix: dev-gcp-
 commonLabels:
   env: dev
 bases:

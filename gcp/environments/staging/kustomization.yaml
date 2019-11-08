@@ -1,4 +1,4 @@
-namePrefix: staging-
+namePrefix: staging-gcp-
 commonLabels:
   env: staging
 bases:

@@ -1,0 +1,16 @@
+apiVersion: compute.gcp.crossplane.io/v1alpha3
+kind: GlobalAddress
+metadata:
+  name: globaladdress
+spec:
+  name: my-cool-globaladdress
+  purpose: VPC_PEERING
+  addressType: INTERNAL
+  prefixLength: 16
+  # must provide one of either networkRef or network
+  # networkRef:
+  #   name: sample-network
+  # network: projects/crossplane-playground/global/networks/sample-network
+  reclaimPolicy: Delete
+  providerRef:
+    name: gcp-provider
