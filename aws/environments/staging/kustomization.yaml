@@ -1,4 +1,4 @@
-namePrefix: staging-
+namePrefix: staging-aws-
 commonLabels:
   env: staging
 bases:

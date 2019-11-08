@@ -7,12 +7,20 @@ specTemplate:
   region: us-east-1
   roleARN: arn:aws:iam::<account-id>:role/<role-name>
   vpcId: vpc-01
-  subnetIds:
-   - subnet-01
-   - subnet-02
-   - subnet-03
-  securityGroupIds:
-   - sg-01
+  ## must provide one of subnetIds or subnetIdRefs
+  # subnetIds:
+  # - subnet-01
+  # - subnet-02
+  # - subnet-03
+  # subnetIdRefs:
+  # - name: sample-subnet1
+  # - name: sample-subnet2
+  # - name: sample-subnet3
+  ## must provide one of securityGroupIds or securityGroupIdRefs
+  # securityGroupIds:
+  # - sg-01
+  # securityGroupIdRefs:
+  # - name: sample-cluster-sg
   workerNodes:
     keyName: mykeypair
     nodeInstanceType: m3.medium

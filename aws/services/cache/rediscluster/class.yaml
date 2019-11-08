@@ -1,7 +1,7 @@
 apiVersion: cache.aws.crossplane.io/v1beta1
 kind: ReplicationGroupClass
 metadata:
-  name: aws-redis
+  name: replicationgroup
 specTemplate:
   writeConnectionSecretsToNamespace: crossplane-system
   providerRef:

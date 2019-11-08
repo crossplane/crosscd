@@ -1,14 +1,11 @@
 apiVersion: database.aws.crossplane.io/v1beta1
 kind: RDSInstanceClass
 metadata:
-  name: rdsmysql
+  name: rdsinstancemysql
 specTemplate:
   forProvider:
     dbInstanceClass: db.t2.medium
     masterUsername: masteruser
-    vpcSecurityGroupIds:
-    - sg-01
-    - sg-02
     allocatedStorage: 50
     engine: mysql
     skipFinalSnapshotBeforeDeletion: true

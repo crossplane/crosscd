@@ -1,4 +1,4 @@
-namePrefix: dev-
+namePrefix: dev-aws-
 commonLabels:
   env: dev
 bases:
