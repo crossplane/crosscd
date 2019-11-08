@@ -4,7 +4,10 @@ metadata:
   name: akscluster
 specTemplate:
   writeConnectionSecretsToNamespace: crossplane-system
-  resourceGroupName: group-westus-1
+  ## must provide one of resourceGroupName or resourceGroupNameRef
+  # resourceGroupName: group-westus-1
+  # resourceGroupNameRef:
+  #   name: sample-rg
   location: West US 2
   version: "1.12.8"
   nodeCount: 3

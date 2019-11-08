@@ -1,4 +1,4 @@
-namePrefix: staging-
+namePrefix: staging-azure-
 commonLabels:
   env: staging
 bases:

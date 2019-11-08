@@ -5,7 +5,10 @@ metadata:
 specTemplate:
   writeConnectionSecretsToNamespace: crossplane-system
   adminLoginName: myadmin
-  resourceGroupName: group-westus-1
+  ## must provide one of resourceGroupName or resourceGroupNameRef
+  # resourceGroupName: group-westus-1
+  # resourceGroupNameRef:
+  #   name: sample-rg
   location: West US
   sslEnforced: false
   version: "9.6"

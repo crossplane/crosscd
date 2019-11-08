@@ -1,7 +1,7 @@
 apiVersion: storage.azure.crossplane.io/v1alpha3
 kind: AccountClass
 metadata:
-  name: storageaccount
+  name: account
 specTemplate:
   writeConnectionSecretsToNamespace: crossplane-system
   storageAccountName: example-storage

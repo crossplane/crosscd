@@ -1,4 +1,4 @@
-namePrefix: dev-
+namePrefix: dev-azure-
 commonLabels:
   env: dev
 bases:
