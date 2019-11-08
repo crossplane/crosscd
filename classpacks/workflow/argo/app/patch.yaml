@@ -1,0 +1,17 @@
+apiVersion: compute.crossplane.io/v1alpha1
+kind: KubernetesCluster
+metadata:
+  name: wordpress-demo-cluster
+spec:
+  classSelector:
+    matchLabels:
+      app: wordpress
+---
+apiVersion: database.crossplane.io/v1alpha1
+kind: MySQLInstance
+metadata:
+  name: sql
+spec:
+  classSelector:
+    matchLabels:
+      app: wordpress

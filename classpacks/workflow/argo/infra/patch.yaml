@@ -38,6 +38,8 @@ apiVersion: database.gcp.crossplane.io/v1beta1
 kind: CloudSQLInstanceClass
 metadata:
   name: dev-gcp-cloudsqlinstancemysql
+  labels:
+    app: wordpress
 specTemplate:
   forProvider:
     region: us-central1
@@ -50,6 +52,8 @@ apiVersion: compute.gcp.crossplane.io/v1alpha3
 kind: GKEClusterClass
 metadata:
   name: dev-gcp-gkecluster
+  labels:
+    app: wordpress
 specTemplate:
   networkRef:
     name: argo-network

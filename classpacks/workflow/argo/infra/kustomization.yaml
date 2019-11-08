@@ -1,6 +1,6 @@
 namePrefix: argo-
 bases:
-- ../../../../gcp/environments/dev-default
+- ../../../../gcp/environments/dev
 - ../../../../gcp/services/compute/network
 - ../../../../gcp/services/compute/subnetwork
 - ../../../../gcp/services/compute/globaladdress
