@@ -1,0 +1,14 @@
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: SecurityGroup
+metadata:
+  name: securitygroup
+spec:
+  groupName: argo-demo-rds-sg
+  description: security group for wordpress rds
+  ingress:
+    - fromPort: 3306
+      toPort: 3306
+      protocol: tcp
+      cidrBlocks:
+        - cidrIp: 0.0.0.0/0
+          description: all ips

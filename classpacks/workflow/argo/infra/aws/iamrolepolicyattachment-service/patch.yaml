@@ -1,0 +1,6 @@
+apiVersion: identity.aws.crossplane.io/v1alpha3
+kind: IAMRolePolicyAttachment
+metadata:
+  name: iamrolepolicyattachment
+spec:
+  policyArn: arn:aws:iam::aws:policy/AmazonEKSServicePolicy

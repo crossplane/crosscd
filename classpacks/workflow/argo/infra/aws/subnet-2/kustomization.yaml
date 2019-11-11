@@ -1,0 +1,5 @@
+nameSuffix: "2"
+bases:
+- ../../../../../../aws/services/network/subnet
+patches:
+- patch.yaml

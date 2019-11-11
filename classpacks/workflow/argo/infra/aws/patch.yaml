@@ -1,0 +1,151 @@
+apiVersion: identity.aws.crossplane.io/v1alpha3
+kind: IAMRolePolicyAttachment
+metadata:
+  name: cluster-iamrolepolicyattachment
+spec:
+  roleNameRef:
+    name: argo-demo-iamrole
+---
+apiVersion: identity.aws.crossplane.io/v1alpha3
+kind: IAMRolePolicyAttachment
+metadata:
+  name: service-iamrolepolicyattachment
+spec:
+  roleNameRef:
+    name: argo-iamrole
+---
+apiVersion: database.aws.crossplane.io/v1alpha3
+kind: DBSubnetGroup
+metadata:
+  name: dbsubnetgroup
+spec:
+  groupName: argo-demo-dbsubnetgroup
+  subnetIdRefs:
+    - name: argo-subnet1
+    - name: argo-subnet2
+    - name: argo-subnet3
+  tags:
+    - key: name
+      value: argo-demo-dbsubnetgroup
+---
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: SecurityGroup
+metadata:
+  name: eks-securitygroup
+spec:
+  vpcIdRef:
+    name: argo-vpc
+---
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: SecurityGroup
+metadata:
+  name: rds-securitygroup
+spec:
+  vpcIdRef:
+    name: argo-vpc
+---
+apiVersion: identity.aws.crossplane.io/v1alpha3
+kind: IAMRole
+metadata:
+  name: iamrole
+spec:
+  roleName: argo-demo-iamrole
+  description: iam role for wordpress eks
+---
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: InternetGateway
+metadata:
+  name: internetgateway
+spec:
+  vpcIdRef:
+    name: argo-vpc
+---
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: RouteTable
+metadata:
+  name: routetable
+spec:
+  vpcIdRef:
+    name: argo-vpc
+  routes:
+    - destinationCidrBlock: 0.0.0.0/0
+      gatewayIdRef:
+        name: argo-internetgateway
+  associations:
+    - subnetIdRef:
+        name: argo-subnet1
+    - subnetIdRef:
+        name: argo-subnet2
+    - subnetIdRef:
+        name: argo-subnet3
+---
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: Subnet
+metadata:
+  name: subnet1
+spec:
+  vpcIdRef:
+    name: argo-vpc
+---
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: Subnet
+metadata:
+  name: subnet2
+spec:
+  vpcIdRef:
+    name: argo-vpc
+---
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: Subnet
+metadata:
+  name: subnet3
+spec:
+  vpcIdRef:
+    name: argo-vpc
+---
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: VPC
+metadata:
+  name: vpc
+spec:
+  cidrBlock: 192.168.0.0/16
+  enableDnsSupport: true
+  enableDnsHostNames: true
+---
+apiVersion: compute.aws.crossplane.io/v1alpha3
+kind: EKSClusterClass
+metadata:
+  name: dev-aws-ekscluster
+specTemplate:
+  region: us-west-2
+  roleARNRef:
+    name: argo-iamrole
+  vpcIdRef:
+    name: argo-vpc
+  subnetIdRefs:
+  - name: argo-subnet1
+  - name: argo-subnet2
+  - name: argo-subnet3
+  securityGroupIdRefs:
+  - name: argo-eks-securitygroup
+  workerNodes:
+    nodeInstanceType: m3.medium
+    nodeGroupName: argo-demo-nodes
+    nodeAutoScalingGroupMinSize: 1
+    nodeAutoScalingGroupMaxSize: 1
+    clusterControlPlaneSecurityGroupRef:
+      name: argo-eks-securitygroup
+---
+apiVersion: database.aws.crossplane.io/v1beta1
+kind: RDSInstanceClass
+metadata:
+  name: dev-aws-rdsinstancemysql
+specTemplate:
+  forProvider:
+    dbInstanceClass: db.t2.small
+    masterUsername: masteruser
+    allocatedStorage: 20
+    vpcSecurityGroupIDRefs:
+      - name: argo-rds-securitygroup
+    dbSubnetGroupNameRef:
+      name: argo-dbsubnetgroup

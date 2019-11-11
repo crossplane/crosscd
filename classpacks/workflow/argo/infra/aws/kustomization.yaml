@@ -1,0 +1,17 @@
+namePrefix: argo-
+bases:
+- ./iamrolepolicyattachment-cluster
+- ./iamrolepolicyattachment-service
+- ./securitygroup-eks
+- ./securitygroup-rds
+- ./subnet-1
+- ./subnet-2
+- ./subnet-3
+- ../../../../../aws/services/identity/iamrole
+- ../../../../../aws/services/database/dbsubnetgroup
+- ../../../../../aws/services/network/internetgateway
+- ../../../../../aws/services/network/routetable
+- ../../../../../aws/services/network/vpc
+- ../../../../../aws/environments/dev
+patches:
+- patch.yaml

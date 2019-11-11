@@ -1,0 +1,7 @@
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: SecurityGroup
+metadata:
+  name: securitygroup
+spec:
+  groupName: argo-demo-eks-sg
+  description: security group for wordpress eks

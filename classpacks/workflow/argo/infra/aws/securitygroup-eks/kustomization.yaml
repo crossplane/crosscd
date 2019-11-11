@@ -1,0 +1,5 @@
+namePrefix: eks-
+bases:
+- ../../../../../../aws/services/network/securitygroup
+patches:
+- patch.yaml

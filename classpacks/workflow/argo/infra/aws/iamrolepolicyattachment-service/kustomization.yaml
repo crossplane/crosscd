@@ -1,0 +1,5 @@
+namePrefix: service-
+bases:
+- ../../../../../../aws/services/identity/iamrolepolicyattachment
+patches:
+- patch.yaml
