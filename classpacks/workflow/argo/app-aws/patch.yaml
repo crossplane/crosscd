@@ -1,0 +1,19 @@
+apiVersion: compute.crossplane.io/v1alpha1
+kind: KubernetesCluster
+metadata:
+  name: wordpress-demo-cluster
+spec:
+  classSelector:
+    matchLabels:
+      env: dev # change this to prod to use prod infra
+      provider: aws
+---
+apiVersion: database.crossplane.io/v1alpha1
+kind: MySQLInstance
+metadata:
+  name: sql
+spec:
+  classSelector:
+    matchLabels:
+      env: dev # change this to prod to use prod infra
+      provider: aws
