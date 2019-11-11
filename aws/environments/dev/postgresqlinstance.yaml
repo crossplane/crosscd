@@ -1,7 +1,7 @@
 apiVersion: database.aws.crossplane.io/v1beta1
 kind: RDSInstanceClass
 metadata:
-  name: rdspostgresql
+  name: rdsinstancepostgresql
 specTemplate:
   forProvider:
     dbInstanceClass: db.t2.micro

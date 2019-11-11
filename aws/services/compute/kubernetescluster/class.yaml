@@ -5,8 +5,14 @@ metadata:
 specTemplate:
   writeConnectionSecretsToNamespace: crossplane-system
   region: us-east-1
-  roleARN: arn:aws:iam::<account-id>:role/<role-name>
-  vpcId: vpc-01
+  ## must provide one of roleARN or roleARNRef
+  # roleARN: arn:aws:iam::<account-id>:role/<role-name>
+  # roleARNRef:
+  #   name: sample-eks-cluster-role
+  ## must provide one of vpcId or vpcIdRef
+  # vpcId: vpc-01
+  # vpcIdRef:
+  #   name: sample-vpc
   ## must provide one of subnetIds or subnetIdRefs
   # subnetIds:
   # - subnet-01
@@ -22,10 +28,12 @@ specTemplate:
   # securityGroupIdRefs:
   # - name: sample-cluster-sg
   workerNodes:
-    keyName: mykeypair
     nodeInstanceType: m3.medium
     nodeGroupName: demo-nodes
-    clusterControlPlaneSecurityGroup: sg-01
+    ## must provide one of either clusterControlPlaneSecurityGroup or clusterControlPlaneSecurityGroupRef
+    # clusterControlPlaneSecurityGroup: sg-01
+    # clusterControlPlaneSecurityGroupRef:
+    #   name: sample-cluster-sg
   providerRef:
     name: aws-provider
   reclaimPolicy: Delete

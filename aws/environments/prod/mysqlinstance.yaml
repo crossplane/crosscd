@@ -1,7 +1,7 @@
 apiVersion: database.aws.crossplane.io/v1beta1
 kind: RDSInstanceClass
 metadata:
-  name: rdsmysql
+  name: rdsinstancemysql
 specTemplate:
   forProvider:
     dbInstanceClass: db.m5.large

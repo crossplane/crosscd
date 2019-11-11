@@ -1,0 +1,19 @@
+apiVersion: database.aws.crossplane.io/v1alpha3
+kind: DBSubnetGroup
+metadata:
+  name: dbsubnetgroup
+spec:
+  groupName: my-cool-dbsubnetgroup
+  description: EKS vpc to rds
+  ## must provide one of subnetIdRefs or subnetIds
+  # subnetIdRefs:
+  #   - name: sample-subnet1
+  #   - name: sample-subnet2
+  #   - name: sample-subnet3
+  # subnetIds:
+  # - my-subnet1
+  # - my-subnet2
+  # - my-subnet3
+  reclaimPolicy: Delete
+  providerRef:
+    name: aws-provider

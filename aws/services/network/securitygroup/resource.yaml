@@ -1,0 +1,14 @@
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: SecurityGroup
+metadata:
+  name: securitygroup
+spec:
+  groupName: my-cool-securitygroup
+  description: some cool description
+  ## must provide one of vpcIdRef or vpcId
+  # vpcIdRef:
+  #   name: sample-vpc
+  # vpcId: name-of-my-vpc
+  reclaimPolicy: Delete
+  providerRef:
+    name: aws-provider

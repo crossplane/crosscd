@@ -1,0 +1,13 @@
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: Subnet
+metadata:
+  name: subnet
+spec:
+  cidrBlock: 192.168.64.0/18
+  ## must provide one of either vpcIdRef or vpcId
+  # vpcIdRef:
+  #   name: sample-vpc
+  availabilityZone: us-west-2a
+  reclaimPolicy: Delete
+  providerRef:
+    name: aws-provider

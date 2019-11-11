@@ -1,0 +1,12 @@
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: InternetGateway
+metadata:
+  name: internetgateway
+spec:
+  ## must provide one of vpcIdRef or vpcId
+  # vpcIdRef:
+  #   name: sample-vpc
+  # vpcId: my-vpc
+  reclaimPolicy: Delete
+  providerRef:
+    name: aws-provider
