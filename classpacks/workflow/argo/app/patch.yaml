@@ -5,7 +5,8 @@ metadata:
 spec:
   classSelector:
     matchLabels:
-      env: dev
+      env: dev # change this to prod to use prod infra
+      provider: gcp # change this to aws to use aws infra
 ---
 apiVersion: database.crossplane.io/v1alpha1
 kind: MySQLInstance
@@ -14,4 +15,5 @@ metadata:
 spec:
   classSelector:
     matchLabels:
-      env: dev
+      env: dev # change this to prod to use prod infra
+      provider: aws # change this to aws to use aws infra
