@@ -4,7 +4,7 @@ metadata:
   name: cluster-iamrolepolicyattachment
 spec:
   roleNameRef:
-    name: argo-demo-iamrole
+    name: argo-iamrole
 ---
 apiVersion: identity.aws.crossplane.io/v1alpha3
 kind: IAMRolePolicyAttachment
