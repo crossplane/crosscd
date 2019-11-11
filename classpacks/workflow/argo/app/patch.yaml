@@ -5,7 +5,7 @@ metadata:
 spec:
   classSelector:
     matchLabels:
-      app: wordpress
+      env: dev
 ---
 apiVersion: database.crossplane.io/v1alpha1
 kind: MySQLInstance
@@ -14,4 +14,4 @@ metadata:
 spec:
   classSelector:
     matchLabels:
-      app: wordpress
+      env: dev

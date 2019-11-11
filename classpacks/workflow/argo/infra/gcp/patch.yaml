@@ -11,6 +11,13 @@ metadata:
   name: subnetwork
 spec:
   name: argo-demo-subnetwork
+  ipCidrRange: "192.168.0.0/24"
+  privateIpGoogleAccess: true
+  secondaryIpRanges:
+    - rangeName: pods
+      ipCidrRange: 10.128.0.0/20
+    - rangeName: services
+      ipCidrRange: 172.16.0.0/16
   networkRef:
     name: argo-network
 ---
@@ -38,8 +45,6 @@ apiVersion: database.gcp.crossplane.io/v1beta1
 kind: CloudSQLInstanceClass
 metadata:
   name: dev-gcp-cloudsqlinstancemysql
-  labels:
-    app: wordpress
 specTemplate:
   forProvider:
     region: us-central1
@@ -52,8 +57,31 @@ apiVersion: compute.gcp.crossplane.io/v1alpha3
 kind: GKEClusterClass
 metadata:
   name: dev-gcp-gkecluster
-  labels:
-    app: wordpress
+specTemplate:
+  networkRef:
+    name: argo-network
+  subnetworkRef:
+    name: argo-subnetwork
+  enableIPAlias: true
+  clusterSecondaryRangeName: pods
+  servicesSecondaryRangeName: services
+---
+apiVersion: database.gcp.crossplane.io/v1beta1
+kind: CloudSQLInstanceClass
+metadata:
+  name: prod-gcp-cloudsqlinstancemysql
+specTemplate:
+  forProvider:
+    region: us-central1
+    settings:
+      ipConfiguration:
+        privateNetworkRef:
+          name: argo-network
+---
+apiVersion: compute.gcp.crossplane.io/v1alpha3
+kind: GKEClusterClass
+metadata:
+  name: prod-gcp-gkecluster
 specTemplate:
   networkRef:
     name: argo-network
