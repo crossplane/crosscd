@@ -16,4 +16,4 @@ spec:
   classSelector:
     matchLabels:
       env: dev # change this to prod to use prod infra
-      provider: aws # change this to aws to use aws infra
+      provider: gcp # change this to aws to use aws infra
