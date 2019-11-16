@@ -1,4 +1,5 @@
 commonLabels:
   provider: aws
+  engine: postgresql
 resources:
 - class.yaml

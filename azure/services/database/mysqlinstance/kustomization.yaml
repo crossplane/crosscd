@@ -1,4 +1,5 @@
 commonLabels:
   provider: azure
+  engine: mysql
 resources:
 - class.yaml

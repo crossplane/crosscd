@@ -1,4 +1,5 @@
 commonLabels:
   provider: azure
+  engine: postgresql
 resources:
 - class.yaml
