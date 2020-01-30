@@ -1,0 +1,30 @@
+apiVersion: compute.aws.crossplane.io/v1alpha3
+kind: EKSClusterClass
+metadata:
+  labels:
+    provider: aws
+    region: east
+  name: argo-east-eks
+specTemplate:
+  providerRef:
+    name: aws-provider-east
+  reclaimPolicy: Delete
+  region: us-east-1
+  roleARNRef:
+    name: argo-east-iamrole
+  securityGroupIdRefs:
+  - name: argo-east-eks-securitygroup
+  subnetIdRefs:
+  - name: argo-east-subnet1
+  - name: argo-east-subnet2
+  - name: argo-east-subnet3
+  vpcIdRef:
+    name: argo-east-vpc
+  workerNodes:
+    clusterControlPlaneSecurityGroupRef:
+      name: argo-east-eks-securitygroup
+    nodeAutoScalingGroupMaxSize: 1
+    nodeAutoScalingGroupMinSize: 1
+    nodeGroupName: argo-east-nodes
+    nodeInstanceType: m3.medium
+  writeConnectionSecretsToNamespace: crossplane-system

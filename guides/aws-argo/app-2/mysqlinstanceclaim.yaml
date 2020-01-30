@@ -1,0 +1,11 @@
+apiVersion: database.crossplane.io/v1alpha1
+kind: MySQLInstance
+metadata:
+  name: sql-east
+spec:
+  classSelector:
+    matchLabels:
+      region: east
+  engineVersion: "5.7"
+  writeConnectionSecretToRef:
+    name: sql-east

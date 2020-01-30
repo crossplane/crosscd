@@ -1,0 +1,23 @@
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: RouteTable
+metadata:
+  labels:
+    provider: aws
+  name: argo-east-routetable
+spec:
+  associations:
+  - subnetIdRef:
+      name: argo-east-subnet1
+  - subnetIdRef:
+      name: argo-east-subnet2
+  - subnetIdRef:
+      name: argo-east-subnet3
+  providerRef:
+    name: aws-provider-east
+  reclaimPolicy: Delete
+  routes:
+  - destinationCidrBlock: 0.0.0.0/0
+    gatewayIdRef:
+      name: argo-east-internetgateway
+  vpcIdRef:
+    name: argo-east-vpc

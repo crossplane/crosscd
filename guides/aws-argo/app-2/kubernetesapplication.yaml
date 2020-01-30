@@ -1,0 +1,91 @@
+apiVersion: workload.crossplane.io/v1alpha1
+kind: KubernetesApplication
+metadata:
+  name: wordpress-east
+  labels:
+    app: wordpress-east
+spec:
+  resourceSelector:
+    matchLabels:
+      app: wordpress-east
+  targetSelector:
+    matchLabels:
+      app: wordpress-east
+  resourceTemplates:
+    - metadata:
+        name: wordpress-east-namespace
+        labels:
+          app: wordpress-east
+      spec:
+        template:
+          apiVersion: v1
+          kind: Namespace
+          metadata:
+            name: wordpress
+            labels:
+              app: wordpress
+    - metadata:
+        name: wordpress-east-deployment
+        labels:
+          app: wordpress-east
+      spec:
+        secrets:
+          - name: sql-east
+        template:
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            namespace: wordpress
+            name: wordpress
+            labels:
+              app: wordpress
+          spec:
+            selector:
+              matchLabels:
+                app: wordpress
+            template:
+              metadata:
+                labels:
+                  app: wordpress
+              spec:
+                containers:
+                  - name: wordpress
+                    image: wordpress:4.6.1-apache
+                    env:
+                      - name: WORDPRESS_DB_HOST
+                        valueFrom:
+                          secretKeyRef:
+                            name: wordpress-east-deployment-sql-east
+                            key: endpoint
+                      - name: WORDPRESS_DB_USER
+                        valueFrom:
+                          secretKeyRef:
+                            name: wordpress-east-deployment-sql-east
+                            key: username
+                      - name: WORDPRESS_DB_PASSWORD
+                        valueFrom:
+                          secretKeyRef:
+                            name: wordpress-east-deployment-sql-east
+                            key: password
+                    ports:
+                      - containerPort: 80
+                        name: wordpress
+    - metadata:
+        name: wordpress-east-service
+        labels:
+          app: wordpress-east
+      spec:
+        template:
+          apiVersion: v1
+          kind: Service
+          metadata:
+            namespace: wordpress
+            name: wordpress
+            labels:
+              app: wordpress
+          spec:
+            ports:
+              - port: 80
+            selector:
+              app: wordpress
+            type: LoadBalancer

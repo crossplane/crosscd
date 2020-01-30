@@ -1,0 +1,30 @@
+apiVersion: compute.aws.crossplane.io/v1alpha3
+kind: EKSClusterClass
+metadata:
+  labels:
+    provider: aws
+    region: west
+  name: argo-west-eks
+specTemplate:
+  providerRef:
+    name: aws-provider-west
+  reclaimPolicy: Delete
+  region: us-west-2
+  roleARNRef:
+    name: argo-west-iamrole
+  securityGroupIdRefs:
+  - name: argo-west-eks-securitygroup
+  subnetIdRefs:
+  - name: argo-west-subnet1
+  - name: argo-west-subnet2
+  - name: argo-west-subnet3
+  vpcIdRef:
+    name: argo-west-vpc
+  workerNodes:
+    clusterControlPlaneSecurityGroupRef:
+      name: argo-west-eks-securitygroup
+    nodeAutoScalingGroupMaxSize: 1
+    nodeAutoScalingGroupMinSize: 1
+    nodeGroupName: argo-west-nodes
+    nodeInstanceType: m3.medium
+  writeConnectionSecretsToNamespace: crossplane-system
