@@ -1,0 +1,40 @@
+apiVersion: database.aws.crossplane.io/v1beta1
+kind: RDSInstanceClass
+metadata:
+  labels:
+    engine: mysql
+    region: west
+  name: argo-west-rds
+specTemplate:
+  forProvider:
+    allocatedStorage: 20
+    dbInstanceClass: db.t2.small
+    dbSubnetGroupNameRef:
+      name: argo-west-dbsubnetgroup
+    engine: mysql
+    masterUsername: masteruser
+    skipFinalSnapshotBeforeDeletion: true
+    vpcSecurityGroupIDRefs:
+    - name: argo-west-rds-securitygroup
+  providerRef:
+    name: aws-provider-west
+  reclaimPolicy: Delete
+  writeConnectionSecretsToNamespace: crossplane-system
+---
+apiVersion: database.aws.crossplane.io/v1alpha3
+kind: DBSubnetGroup
+metadata:
+  name: argo-west-dbsubnetgroup
+spec:
+  groupName: argo-west-dbsubnetgroup
+  description: EKS vpc to rds
+  subnetIdRefs:
+    - name: argo-west-subnet1
+    - name: argo-west-subnet2
+    - name: argo-west-subnet3
+  tags:
+    - key: name
+      value: argo-west-dbsubnetgroup
+  reclaimPolicy: Delete
+  providerRef:
+    name: aws-provider-west

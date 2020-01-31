@@ -1,0 +1,36 @@
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: SecurityGroup
+metadata:
+  labels:
+    provider: aws
+  name: argo-west-eks-securitygroup
+spec:
+  description: security group for wordpress eks
+  groupName: argo-west-eks-sg
+  providerRef:
+    name: aws-provider-west
+  reclaimPolicy: Delete
+  vpcIdRef:
+    name: argo-west-vpc
+---
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: SecurityGroup
+metadata:
+  labels:
+    provider: aws
+  name: argo-west-rds-securitygroup
+spec:
+  description: security group for wordpress rds
+  groupName: argo-west-rds-sg
+  ingress:
+  - cidrBlocks:
+    - cidrIp: 0.0.0.0/0
+      description: all ips
+    fromPort: 3306
+    protocol: tcp
+    toPort: 3306
+  providerRef:
+    name: aws-provider-west
+  reclaimPolicy: Delete
+  vpcIdRef:
+    name: argo-west-vpc

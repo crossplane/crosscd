@@ -1,0 +1,12 @@
+apiVersion: compute.crossplane.io/v1alpha1
+kind: KubernetesCluster
+metadata:
+  name: wordpress-east-cluster
+  labels:
+    app: wordpress-east
+spec:
+  classSelector:
+    matchLabels:
+      region: east
+  writeConnectionSecretToRef:
+    name: wordpress-east-cluster

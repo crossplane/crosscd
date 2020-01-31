@@ -1,0 +1,53 @@
+apiVersion: identity.aws.crossplane.io/v1alpha3
+kind: IAMRole
+metadata:
+  labels:
+    provider: aws
+  name: argo-west-iamrole
+spec:
+  assumeRolePolicyDocument: |
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Principal": {
+            "Service": "eks.amazonaws.com"
+          },
+          "Action": "sts:AssumeRole"
+        }
+      ]
+    }
+  description: iam role for wordpress eks
+  providerRef:
+    name: aws-provider-west
+  reclaimPolicy: Delete
+  roleName: argo-west-iamrole
+---
+apiVersion: identity.aws.crossplane.io/v1alpha3
+kind: IAMRolePolicyAttachment
+metadata:
+  labels:
+    provider: aws
+  name: argo-west-cluster-iamrolepolicyattachment
+spec:
+  policyArn: arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+  providerRef:
+    name: aws-provider-west
+  reclaimPolicy: Delete
+  roleNameRef:
+    name: argo-west-iamrole
+---
+apiVersion: identity.aws.crossplane.io/v1alpha3
+kind: IAMRolePolicyAttachment
+metadata:
+  labels:
+    provider: aws
+  name: argo-west-service-iamrolepolicyattachment
+spec:
+  policyArn: arn:aws:iam::aws:policy/AmazonEKSServicePolicy
+  providerRef:
+    name: aws-provider-west
+  reclaimPolicy: Delete
+  roleNameRef:
+    name: argo-west-iamrole

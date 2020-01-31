@@ -1,0 +1,12 @@
+apiVersion: compute.crossplane.io/v1alpha1
+kind: KubernetesCluster
+metadata:
+  name: wordpress-west-cluster
+  labels:
+    app: wordpress-west
+spec:
+  classSelector:
+    matchLabels:
+      region: west
+  writeConnectionSecretToRef:
+    name: wordpress-west-cluster

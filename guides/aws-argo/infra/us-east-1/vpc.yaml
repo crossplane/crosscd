@@ -1,0 +1,13 @@
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: VPC
+metadata:
+  labels:
+    provider: aws
+  name: argo-east-vpc
+spec:
+  cidrBlock: 192.168.0.0/16
+  enableDnsHostNames: true
+  enableDnsSupport: true
+  providerRef:
+    name: aws-provider-east
+  reclaimPolicy: Delete

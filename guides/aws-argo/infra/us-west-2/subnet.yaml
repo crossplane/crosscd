@@ -1,0 +1,44 @@
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: Subnet
+metadata:
+  labels:
+    provider: aws
+  name: argo-west-subnet1
+spec:
+  availabilityZone: us-west-2a
+  cidrBlock: 192.168.64.0/18
+  providerRef:
+    name: aws-provider-west
+  reclaimPolicy: Delete
+  vpcIdRef:
+    name: argo-west-vpc
+---
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: Subnet
+metadata:
+  labels:
+    provider: aws
+  name: argo-west-subnet2
+spec:
+  availabilityZone: us-west-2b
+  cidrBlock: 192.168.128.0/18
+  providerRef:
+    name: aws-provider-west
+  reclaimPolicy: Delete
+  vpcIdRef:
+    name: argo-west-vpc
+---
+apiVersion: network.aws.crossplane.io/v1alpha3
+kind: Subnet
+metadata:
+  labels:
+    provider: aws
+  name: argo-west-subnet3
+spec:
+  availabilityZone: us-west-2c
+  cidrBlock: 192.168.192.0/18
+  providerRef:
+    name: aws-provider-west
+  reclaimPolicy: Delete
+  vpcIdRef:
+    name: argo-west-vpc
