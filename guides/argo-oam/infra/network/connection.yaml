@@ -1,0 +1,14 @@
+apiVersion: servicenetworking.gcp.crossplane.io/v1beta1
+kind: Connection
+metadata:
+  name: argo-oam-conn
+spec:
+  forProvider:
+    parent: services/servicenetworking.googleapis.com
+    networkRef:
+      name: argo-oam-network
+    reservedPeeringRangeRefs:
+      - name: argo-oam-ga
+  reclaimPolicy: Delete
+  providerRef:
+    name: gcp-provider

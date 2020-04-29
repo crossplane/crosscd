@@ -1,0 +1,14 @@
+apiVersion: compute.gcp.crossplane.io/v1beta1
+kind: GlobalAddress
+metadata:
+  name: argo-oam-ga
+spec:
+  forProvider:
+    purpose: VPC_PEERING
+    addressType: INTERNAL
+    prefixLength: 16
+    networkRef:
+      name: argo-oam-network
+  reclaimPolicy: Delete
+  providerRef:
+    name: gcp-provider

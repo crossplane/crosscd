@@ -1,0 +1,20 @@
+apiVersion: database.gcp.crossplane.io/v1beta1
+kind: CloudSQLInstanceClass
+metadata:
+  name: argo-oam-cloudsql
+specTemplate:
+  writeConnectionSecretsToNamespace: crossplane-system
+  providerRef:
+    name: gcp-provider
+  reclaimPolicy: Delete
+  forProvider:
+    databaseVersion: POSTGRES_9_6
+    region: us-central1
+    settings:
+      tier: db-custom-1-3840
+      dataDiskType: PD_SSD
+      dataDiskSizeGb: 10
+      ipConfiguration:
+        ipv4Enabled: false
+        privateNetworkRef:
+          name: argo-oam-network

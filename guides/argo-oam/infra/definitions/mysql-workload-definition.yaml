@@ -1,0 +1,7 @@
+apiVersion: core.oam.dev/v1alpha2
+kind: WorkloadDefinition
+metadata:
+  name: mysqlinstances.database.crossplane.io
+spec:
+  definitionRef:
+    name: mysqlinstances.database.crossplane.io
