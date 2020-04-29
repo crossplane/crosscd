@@ -1,0 +1,12 @@
+apiVersion: compute.gcp.crossplane.io/v1beta1
+kind: Network
+metadata:
+  name: argo-oam-network
+spec:
+  forProvider:
+    autoCreateSubnetworks: false
+    routingConfig:
+      routingMode: REGIONAL
+  reclaimPolicy: Delete
+  providerRef:
+    name: gcp-provider
